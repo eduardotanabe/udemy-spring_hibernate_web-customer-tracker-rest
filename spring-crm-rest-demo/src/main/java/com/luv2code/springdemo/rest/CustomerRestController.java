@@ -31,6 +31,10 @@ public class CustomerRestController {
 		
 		Customer theCustomer = customerService.getCustomer(customerId);
 		
+		if(theCustomer == null) {  // qq adição de um id fora do "range" de id d números inteiros se tornará null por causa da forma que está a busca no BD
+			throw new CustomerNotFoundException("Customer id not found - " + customerId);
+		}
+		
 		return theCustomer;
 	}
 	
